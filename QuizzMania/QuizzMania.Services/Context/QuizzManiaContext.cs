@@ -34,7 +34,7 @@ namespace QuizzMania.Services.Context
                 if (!context.Users.Any())
                 {
                     context.Users.Add(new User() { FirstName = "Nicolas" });
-                    context.Users.Add(new User() { FirstName = "Thommmmmas" });
+                    context.Users.Add(new User() { FirstName = "Thomas" });
                     context.Users.Add(new User() { FirstName = "Sergio" });
                     context.Users.Add(new User() { FirstName = "Bennoit" });
                     context.Users.Add(new User() { FirstName = "Colin" });
