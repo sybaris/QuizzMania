@@ -17,31 +17,9 @@
 
             <h1>Get person details</h1>
             <form asp-controller="Home" asp-action="Login">
-                
-                <label asp-for="FirstName"></label>
-                <input asp-for="FirstName"/>
-                <span asp-validation-for="FirstName"></span>
-                <br />
-                <label asp-for="LastName"></label>
-                <input asp-for="LastName" />
-                <span asp-validation-for="LastName"></span>
-                <br />
-                <label asp-for="Email"></label>
-                <input asp-for="Email" />
-                <span asp-validation-for="Email"></span>
-                <br />
-                <label asp-for="IsAdmin"></label>
-                <input asp-for="IsAdmin" type="checkbox"/>
-                <span asp-validation-for="IsAdmin"></span>
-                <br />
+                @Html.EditorForModel()
                 <input type="submit" value="Submit my details" />
             </form>
-
-            <!-- Remind Passowrd -->
-            <div id="formFooter">
-                <a class="underlineHover" href="#">Forgot Password?</a>
-            </div>
-
         </div>
     </div>
 

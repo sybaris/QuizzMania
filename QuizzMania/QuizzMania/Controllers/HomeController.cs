@@ -31,7 +31,7 @@ namespace QuizzMania.Controllers
 
             if (userModel.IsAdmin)
             {
-                return View("Admin");
+                return View("Admin", new List<UsersModel>() { new UsersModel() {FirstName = "Jean" }, new UsersModel() { FirstName = "Kristof" } });
             }
 
             return View("Quizz");

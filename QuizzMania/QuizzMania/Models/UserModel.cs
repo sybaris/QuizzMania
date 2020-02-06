@@ -11,6 +11,7 @@ namespace QuizzMania.Models
         /// <summary>
         /// First name
         /// </summary>
+        [Display (Name = "Prénom : ")]
         [Required (ErrorMessage = "Prénom requis ! ! !"),MinLength(3, ErrorMessage = " Il faut au moins 3 caractères ! ! !")]
         public string FirstName { get; set; }
 
