@@ -24,8 +24,11 @@ namespace QuizzMania.Controllers
 
         public IActionResult Login( UserModel userModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("Index");
+            }
 
-            
             if (userModel.IsAdmin)
             {
                 return View("Admin");
