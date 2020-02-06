@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using QuizzMania.Services.Context;
 
 namespace QuizzMania
 {
@@ -32,7 +33,8 @@ namespace QuizzMania
             });
 
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc(MvcOptions => MvcOptions.EnableEndpointRouting = false);
+            services.AddSingleton<QuizzManiaContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +55,8 @@ namespace QuizzMania
             app.UseCookiePolicy();
 
             app.UseMvcWithDefaultRoute();
+            QuizzManiaContext quizzManiaContext = new QuizzManiaContext();
+            quizzManiaContext.InitDefaultValue();
         }
     }
 }
