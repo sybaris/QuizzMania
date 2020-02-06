@@ -22,7 +22,27 @@ namespace QuizzMania.Controllers
             return View();
         }
 
-        
+        public IActionResult Login( UserModel userModel)
+        {
+
+            
+            if (userModel.IsAdmin)
+            {
+                return View("Admin");
+            }
+
+            return View("Quizz");
+            
+        }
+
+        public IActionResult Quizz(String answer)
+        {
+            return Content("hello  " + answer);
+
+        }
+
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
