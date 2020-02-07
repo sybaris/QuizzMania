@@ -32,6 +32,8 @@ namespace QuizzMania.Services.Context
             {
                 context.Database.EnsureCreated();
 
+                /*context.Users.RemoveRange(Users);*/
+
                 if (!context.Users.Any())
                 {
                     context.Users.Add(new User() { FirstName = "Nicolas" });

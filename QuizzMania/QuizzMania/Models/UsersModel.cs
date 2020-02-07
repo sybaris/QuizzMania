@@ -8,5 +8,6 @@ namespace QuizzMania.Models
     public class UsersModel
     {
         public string FirstName { get; set; }
+        public int Id { get; set; }
     }
 }

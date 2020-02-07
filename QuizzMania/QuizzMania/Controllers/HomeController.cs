@@ -29,11 +29,7 @@ namespace QuizzMania.Controllers
             return View();
         }
 
-        public bool Toto(User u)
-        {
-            return u.IsAdmin && (55 + 78 == 21);
-        }
-
+        
         public IActionResult Login(UserModel userModel)
         {
             if (!ModelState.IsValid)
@@ -50,27 +46,22 @@ namespace QuizzMania.Controllers
                     */
                 
                 var q = from user in _quizzManiaContext.Users
-                        where /*!user.IsAdmin*/ Toto(user)
+                        where !user.IsAdmin 
                         orderby user.FirstName
-                        select new UsersModel() { FirstName = user.FirstName };
+                        select new UsersModel() { FirstName = user.FirstName , Id= user.Id};
                         
                 var result = q.ToList();
 
                 return View("Admin", result);
             }
 
-            return View("Quizz");
+            var a = from user in _quizzManiaContext.Users
+                    where user.FirstName.ToLower() == userModel.FirstName.ToLower()
+                    select new UsersModel() { FirstName = user.FirstName, Id = user.Id };
+
+            return View("Quizz", a.Single());
 
         }
-
-        public IActionResult Quizz(String answer)
-        {
-            return Content("hello  " + answer);
-
-        }
-
-
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

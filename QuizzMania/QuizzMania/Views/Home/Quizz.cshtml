@@ -1,13 +1,15 @@
-﻿
+﻿@model UsersModel
 @{
     ViewData["Title"] = "Quizz";
 }
 
 <h2>Quizz</h2>
-
+<br /> <p>Soumettre votre réponse</p>
 <!-- QUestionnary Form -->
-<form asp-controller="Home" asp-action="Quizz" method="post">
-    <input type="text" class="fadeIn one" name="answer" placeholder="answers">
-    <input type="submit" class="fadeIn two" value="Log In">
-</form>
+       @*<form asp-controller="Home" asp-action="Quizz" method="post">*@
+           <input type="text" class="form-control" name="messageInput" placeholder="Votre réponse">
+           <br />
+           <button class="btn" value="Soumettre" name="sendButton"/>
+            @Html.HiddenFor(m => Model)
+       @*</form>*@
 

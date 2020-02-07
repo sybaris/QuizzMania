@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    
 </head>
 <body>
 
@@ -42,13 +43,13 @@
         @RenderBody()
 
         <hr />
-        
+
 
         <footer class="text-center">
             <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
                 <span class="glyphicon glyphicon-chevron-up"></span>
             </a><br><br>
-                    <p>2020 - QuizzMania <a href="https://www.w3schools.com" data-toggle="tooltip" title="Visit w3schools">www.w3schools.com</a></p>
+            <p>2020 - QuizzMania <a href="https://www.w3schools.com" data-toggle="tooltip" title="Visit w3schools">www.w3schools.com</a></p>
         </footer>
     </div>
 
@@ -74,5 +75,9 @@
     </environment>
 
     @RenderSection("Scripts", required: false)
+
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/quizz.js"></script>
+
 </body>
 </html>
