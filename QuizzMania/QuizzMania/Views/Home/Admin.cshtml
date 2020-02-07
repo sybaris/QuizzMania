@@ -7,8 +7,9 @@
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">User</th>
-            <th scope="col">Answers</th>
+            <th scope="col">Eleve</th>
+            <th scope="col">Réponses</th>
+            <th scope="col">A répondu</th>
         </tr>
     </thead>
     <tbody>
@@ -16,10 +17,18 @@
         {
             <tr>
                 <td>@item.FirstName</td>
-                <td id="@(item.Id)"></td>
+                <td ><span id="@(item.Id)" class="reponse"></span></td>
+                <td><i class="list-icon fa fa-times" id="icon@(item.Id)"></i></td>
+
             </tr>
         }
     </tbody>
+
 </table>
+
+<button id="btnshow" class="btn">Afficher les réponses</button>
+<button id="btn_next" class="btn">Question suivante</button>
+
+<script src="~/js/admin.js"></script>
 
 

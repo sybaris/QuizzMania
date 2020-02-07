@@ -1,25 +1,38 @@
 ﻿"use strict";
+$(function () {
+    $("#sendButton").attr('disabled', true);
+})
 
 var connection = new signalR.HubConnectionBuilder().withUrl("/QuizzHub").build();
 
-//Disable send button until connection is established
-document.getElementById("sendButton").disabled = true;
-
-connection.on("ReceiveMessage", function (user, id, message) {
-    var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    document.getElementById(id).textContent = message;
-});
-
 connection.start().then(function () {
-    document.getElementById("sendButton").disabled = false;
+    $("#sendButton").attr('disabled', false);
 }).catch(function (err) {
     return console.error(err.toString());
 });
 
-document.getElementById("sendButton").addEventListener("click", function (event) {
-    var user = document.getElementById("userInput").value;
-    var message = document.getElementById("messageInput").value;
-    connection.invoke("SendMessage", user, message).catch(function (err) {
+connection.on("ReceiveMessage", function (user, id, message) { // Envoi des champs 
+    var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    document.getElementById(id).textContent = message;
+
+    $("#icon" + id).removeClass("fa-times");
+    $("#icon" + id).addClass("fa-check");
+});
+
+connection.on("ButtonDisabled", function () { // Désactivation du button
+    $("#sendButton").attr("disabled", true);
+});
+
+connection.on("ButtonNext", function () { // Question suivante
+    $("#messageInput").val("");
+    $("#sendButton").attr("disabled", false);
+});
+
+$("#sendButton").on("click", function (event) {
+    var user = $(this).data('firstname');
+    var id = $(this).data('id');
+    var message = $("#messageInput").val();
+    connection.invoke("SendMessage", user, id, message).catch(function (err) {
         return console.error(err.toString());
     });
     event.preventDefault();

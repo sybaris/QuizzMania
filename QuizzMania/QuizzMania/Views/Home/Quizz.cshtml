@@ -7,9 +7,8 @@
 <br /> <p>Soumettre votre réponse</p>
 <!-- QUestionnary Form -->
        @*<form asp-controller="Home" asp-action="Quizz" method="post">*@
-           <input type="text" class="form-control" name="messageInput" placeholder="Votre réponse">
+           <input type="text" class="form-control" id="messageInput" placeholder="Votre réponse"/>
            <br />
-           <button class="btn" value="Soumettre" name="sendButton"/>
-            @Html.HiddenFor(m => Model)
+           <button id="sendButton" class="btn" data-id="@Model.Id" data-firstname="@Model.FirstName"> Soumettre </button>
        @*</form>*@
 
