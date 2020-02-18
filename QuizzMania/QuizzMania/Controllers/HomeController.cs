@@ -25,10 +25,8 @@ namespace QuizzMania.Controllers
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
-
             return View();
         }
-
         
         public IActionResult Login(UserModel userModel)
         {
@@ -39,12 +37,6 @@ namespace QuizzMania.Controllers
 
             if (userModel.IsAdmin)
             {
-                /*
-                IEnumerable<User> users = _quizzManiaContext.Users;
-                IEnumerable<UsersModel>  result = 
-                    users.Where(u => !u.IsAdmin).OrderBy(u => u.FirstName).Select(u => new UsersModel() { FirstName = u.FirstName });
-                    */
-                
                 var q = from user in _quizzManiaContext.Users
                         where !user.IsAdmin 
                         orderby user.FirstName
@@ -58,9 +50,9 @@ namespace QuizzMania.Controllers
             var a = from user in _quizzManiaContext.Users
                     where user.FirstName.ToLower() == userModel.FirstName.ToLower()
                     select new UsersModel() { FirstName = user.FirstName, Id = user.Id };
-
+            if (a.Count() != 1)
+                throw new Exception($"L'utilisateur {userModel.FirstName} n'a pas été trouvé");
             return View("Quizz", a.Single());
-
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

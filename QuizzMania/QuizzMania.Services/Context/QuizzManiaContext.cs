@@ -31,20 +31,19 @@ namespace QuizzMania.Services.Context
             using (var context = new QuizzManiaContext())
             {
                 context.Database.EnsureCreated();
-
                 /*context.Users.RemoveRange(Users);*/
 
                 if (!context.Users.Any())
                 {
-                    context.Users.Add(new User() { FirstName = "Nicolas" });
-                    context.Users.Add(new User() { FirstName = "Thomas" });
-                    context.Users.Add(new User() { FirstName = "Sergio" });
-                    context.Users.Add(new User() { FirstName = "Bennoit" });
-                    context.Users.Add(new User() { FirstName = "Colin" });
-                    context.Users.Add(new User() { FirstName = "Anthony" });
-                    context.Users.Add(new User() { FirstName = "Rémi" });
-                    context.Users.Add(new User() { FirstName = "Mamadou" });
-                    context.Users.Add(new User() { FirstName = "Jean-pierre", IsAdmin = true });
+                    context.Users.Add(new User() { FirstName = "User1" });
+                    context.Users.Add(new User() { FirstName = "User2" });
+                    context.Users.Add(new User() { FirstName = "User3" });
+                    context.Users.Add(new User() { FirstName = "User4" });
+                    context.Users.Add(new User() { FirstName = "User5" });
+                    context.Users.Add(new User() { FirstName = "User6" });
+                    context.Users.Add(new User() { FirstName = "User7" });
+                    context.Users.Add(new User() { FirstName = "User8" });
+                    context.Users.Add(new User() { FirstName = "Admin", IsAdmin = true });
                 }
                 context.SaveChanges();
             }
