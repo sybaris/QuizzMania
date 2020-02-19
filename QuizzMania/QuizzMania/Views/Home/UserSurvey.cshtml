@@ -2,13 +2,10 @@
 @{
     ViewData["Title"] = "Quizz";
 }
-
 <h2>Quizz</h2>
-<br /> <p>Soumettre votre réponse</p>
-<!-- Questionnary Form -->
-       @*<form asp-controller="Home" asp-action="Quizz" method="post">*@
-           <input type="text" class="form-control" id="messageInput" placeholder="Votre réponse"/>
-           <br />
-           <button id="sendButton" class="btn" data-id="@Model.Id" data-firstname="@Model.FirstName"> Soumettre </button>
-       @*</form>*@
+<br /> 
+<p>Soumettre votre réponse</p>
+<input type="text" class="form-control" id="messageInput" placeholder="Votre réponse" />
+<br />
+<button id="sendButton" class="btn" data-id="@Model.Id" data-firstname="@Model.FirstName"> Soumettre </button>
 

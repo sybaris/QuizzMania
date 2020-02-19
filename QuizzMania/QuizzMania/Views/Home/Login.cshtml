@@ -1,28 +1,22 @@
 ﻿@model UserViewModel
-
 @{
     ViewData["Title"] = "Home Page";
 }
-
-    <div class="wrapper fadeInDown">
-        <div id="formContent">
-            <!-- Tabs Titles -->
-            <!-- Icon -->
-            <div class="fadeIn first">
-                <img src="~/images/UserLogin.png" id="icon" alt="User Icon" />
-            </div>
-
-            <!-- Login Form -->
-
-            <h1>Bienvenue sur QuizzMania</h1>
-
-            <h2>Merci de vous identifier</h2>
-            <form asp-controller="Home" asp-action="Login">
-                @Html.EditorForModel()
-                <input type="submit" value="Submit my details" />
-            </form>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <img src="~/images/UserLogin.png" id="icon" alt="User Icon" />
         </div>
+        <h1>Bienvenue sur QuizzMania</h1>
+        <h2>Merci de vous identifier</h2>
+        <!-- Login Form -->
+        <form asp-controller="Home" asp-action="Login">
+            @Html.EditorForModel()
+            <input type="submit" value="Se connecter" />
+        </form>
     </div>
+</div>
 
 
 
