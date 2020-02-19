@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace QuizzMania.Models
 {
-    public class UserModel
+    public class UserViewModel
     { 
         /// <summary>
         /// First name
