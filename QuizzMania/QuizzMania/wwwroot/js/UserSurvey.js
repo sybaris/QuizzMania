@@ -1,4 +1,7 @@
 ﻿"use strict";
+//---------------------------------------------------------------
+// Ce fichier contient le javascript à destination de la vue UserSurvey
+//---------------------------------------------------------------
 $(function () {
     $("#sendButton").attr('disabled', true);
 })
