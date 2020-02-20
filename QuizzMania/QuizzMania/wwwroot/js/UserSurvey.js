@@ -14,7 +14,7 @@ connection.start().then(function () {
     return console.error(err.toString());
 });
 
-connection.on("ReceiveMessage", function (user, id, message) { // Envoi des champs 
+connection.on("ReceiveUserAnswer", function (user, id, message) { // Envoi des champs 
     var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     document.getElementById(id).textContent = message;
 
@@ -22,20 +22,21 @@ connection.on("ReceiveMessage", function (user, id, message) { // Envoi des cham
     $("#icon" + id).addClass("fa-check");
 });
 
-connection.on("ButtonDisabled", function () { // Désactivation du button
+connection.on("ReceiveAdminDisplayAllAnswers", function () { // Désactivation du button
     $("#sendButton").attr("disabled", true);
 });
 
-connection.on("ButtonNext", function () { // Question suivante
+connection.on("ReceiveAdminNextQuestion", function () { // Question suivante
     $("#messageInput").val("");
     $("#sendButton").attr("disabled", false);
 });
 
+// Click sur le boutton "Soumettre une réponse" d'un utilisateur
 $("#sendButton").on("click", function (event) {
     var user = $(this).data('firstname');
     var id = $(this).data('id');
     var message = $("#messageInput").val();
-    connection.invoke("SendMessage", user, id, message).catch(function (err) {
+    connection.invoke("SendUserAnswer", user, id, message).catch(function (err) {
         return console.error(err.toString());
     });
     event.preventDefault();

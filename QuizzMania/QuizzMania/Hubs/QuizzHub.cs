@@ -8,19 +8,19 @@ namespace QuizzMania.Hubs
 {
     public class QuizzHub : Hub
     {
-        public async Task SendMessage(string user, int id, string message)
+        public async Task SendUserAnswer(string user, int id, string message)
         {
-            await Clients.All.SendAsync("ReceiveMessage", user, id, message);
+            await Clients.All.SendAsync("ReceiveUserAnswer", user, id, message);
         }
 
-        public async Task DisabledButton()
+        public async Task SendAdminDisplayAllAnswers()
         {
-            await Clients.All.SendAsync("ButtonDisabled");
+            await Clients.All.SendAsync("ReceiveAdminDisplayAllAnswers");
         }
 
-        public async Task NextQuestion()
+        public async Task SendAdminNextQuestion()
         {
-            await Clients.All.SendAsync("ButtonNext");
+            await Clients.All.SendAsync("ReceiveAdminNextQuestion");
         }
     }
 }
