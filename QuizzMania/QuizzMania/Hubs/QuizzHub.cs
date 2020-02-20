@@ -11,17 +11,16 @@ namespace QuizzMania.Hubs
         public async Task SendMessage(string user, int id, string message)
         {
             await Clients.All.SendAsync("ReceiveMessage", user, id, message);
-            
         }
+
         public async Task DisabledButton()
         {
             await Clients.All.SendAsync("ButtonDisabled");
-
         }
+
         public async Task NextQuestion()
         {
             await Clients.All.SendAsync("ButtonNext");
-
         }
     }
 }

@@ -10,7 +10,16 @@ namespace QuizzMania.Services.Context
     public class QuizzManiaContext : DbContext
     {
         /// <summary>
-        /// DbSet users
+        /// Contructeur
+        /// </summary>
+        /// <param name="options"></param>
+        public QuizzManiaContext(DbContextOptions<QuizzManiaContext> options) : base(options)
+        {
+
+        }
+
+        /// <summary>
+        /// "Table" users
         /// </summary>
         public virtual DbSet<User> Users { get; set; }
 
@@ -28,25 +37,23 @@ namespace QuizzMania.Services.Context
 
         public void InitDefaultValue()
         {
-            using (var context = new QuizzManiaContext())
-            {
-                context.Database.EnsureCreated();
-                /*context.Users.RemoveRange(Users);*/
+            Database.EnsureCreated();
+            /*Users.RemoveRange(Users);*/
 
-                if (!context.Users.Any())
-                {
-                    context.Users.Add(new User() { FirstName = "User1" });
-                    context.Users.Add(new User() { FirstName = "User2" });
-                    context.Users.Add(new User() { FirstName = "User3" });
-                    context.Users.Add(new User() { FirstName = "User4" });
-                    context.Users.Add(new User() { FirstName = "User5" });
-                    context.Users.Add(new User() { FirstName = "User6" });
-                    context.Users.Add(new User() { FirstName = "User7" });
-                    context.Users.Add(new User() { FirstName = "User8" });
-                    context.Users.Add(new User() { FirstName = "Admin", IsAdmin = true });
-                }
-                context.SaveChanges();
+            if (!Users.Any())
+            {
+                Users.Add(new User() { FirstName = "User1" });
+                Users.Add(new User() { FirstName = "User2" });
+                Users.Add(new User() { FirstName = "User3" });
+                Users.Add(new User() { FirstName = "User4" });
+                Users.Add(new User() { FirstName = "User5" });
+                Users.Add(new User() { FirstName = "User6" });
+                Users.Add(new User() { FirstName = "User7" });
+                Users.Add(new User() { FirstName = "User8" });
+                Users.Add(new User() { FirstName = "Admin", IsAdmin = true });
             }
+            SaveChanges();
         }
     }
 }
+

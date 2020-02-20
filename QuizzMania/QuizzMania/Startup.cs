@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,7 +29,10 @@ namespace QuizzMania
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddSingleton<QuizzManiaContext>();
+            services.AddDbContext<QuizzManiaContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("UserDatabase"))
+            );
+            //services.AddSingleton<QuizzManiaContext>();
             services.AddSignalR();
         }
 
@@ -58,7 +62,6 @@ namespace QuizzMania
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-               
             });
             quizzManiaContext.InitDefaultValue();
         }
