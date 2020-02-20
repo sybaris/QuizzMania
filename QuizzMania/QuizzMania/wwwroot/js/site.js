@@ -8,3 +8,6 @@ $(document).ready(function () {
     // Ceci active le style des tooltip via bootstrap
     $('[data-toggle="tooltip"]').tooltip();
 })
+
+// varaible globale utilisé pour SignalR
+var connection = new signalR.HubConnectionBuilder().withUrl("/QuizzHub").build();

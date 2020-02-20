@@ -8,6 +8,11 @@ $(function () {
     $(".reponse").toggle();
 })
 
+// On démarre SignalR pour la page AnswersWhiteboard
+connection.start().catch(function (err) {
+    return console.error(err.toString());
+});
+
 // Click sur le boutton "Afficher les réponses"
 $("#btnshow").on("click", function (event) {
     // On change l'état caché/affiché de la réponse
@@ -35,4 +40,15 @@ $("#btn_next").on("click", function (event) {
     });
     // On a traité l'événement... https://developer.mozilla.org/fr/docs/Web/API/Event/preventDefault
     event.preventDefault();
+});
+
+// On recoit de SignalR l'info qu'un utilisateur a envoyé sa réponse
+connection.on("ReceiveUserAnswer", function (user, id, reponse) {
+    // On enlève quelques caractères qui peuvent poser problème en Html
+    var reponseStr = reponse.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    // On met le texte de la réponse
+    document.getElementById(id).textContent = reponseStr;
+    // On retire l'icone croix rouge pour mettre la coche verte
+    $("#icon" + id).removeClass("fa-times");
+    $("#icon" + id).addClass("fa-check");
 });

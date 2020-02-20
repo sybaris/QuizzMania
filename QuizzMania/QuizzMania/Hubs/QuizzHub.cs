@@ -8,9 +8,9 @@ namespace QuizzMania.Hubs
 {
     public class QuizzHub : Hub
     {
-        public async Task SendUserAnswer(string user, int id, string message)
+        public async Task SendUserAnswer(string user, int id, string reponse)
         {
-            await Clients.All.SendAsync("ReceiveUserAnswer", user, id, message);
+            await Clients.All.SendAsync("ReceiveUserAnswer", user, id, reponse);
         }
 
         public async Task SendAdminDisplayAllAnswers()

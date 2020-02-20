@@ -3,41 +3,42 @@
 // Ce fichier contient le javascript à destination de la vue UserSurvey
 //---------------------------------------------------------------
 $(function () {
-    $("#sendButton").attr('disabled', true);
+    $("#sendUserAnswerButton").attr('disabled', true);
 })
 
-var connection = new signalR.HubConnectionBuilder().withUrl("/QuizzHub").build();
-
+// On démarre SignalR pour la page UserSurvey
 connection.start().then(function () {
-    $("#sendButton").attr('disabled', false);
+    $("#sendUserAnswerButton").attr('disabled', false);
 }).catch(function (err) {
     return console.error(err.toString());
 });
 
-connection.on("ReceiveUserAnswer", function (user, id, message) { // Envoi des champs 
-    var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    document.getElementById(id).textContent = message;
-
-    $("#icon" + id).removeClass("fa-times");
-    $("#icon" + id).addClass("fa-check");
+// On recoit de SignalR l'info que l'admin affiche les réponses
+connection.on("ReceiveAdminDisplayAllAnswers", function () {
+    // Désactivation du button pour que l'utilisateur n'envoie plus de réponses
+    $("#sendUserAnswerButton").attr("disabled", true);
 });
 
-connection.on("ReceiveAdminDisplayAllAnswers", function () { // Désactivation du button
-    $("#sendButton").attr("disabled", true);
-});
-
-connection.on("ReceiveAdminNextQuestion", function () { // Question suivante
-    $("#messageInput").val("");
-    $("#sendButton").attr("disabled", false);
+// On recoit de SignalR l'info que l'admin passe à la question suivante
+connection.on("ReceiveAdminNextQuestion", function () { 
+    // On vide l'input pour que l'utilisateur puisse proposer une autre réponse
+    $("#userAnswerInput").val("");
+    // On réactive le boutton de soumission de la réponse
+    $("#sendUserAnswerButton").attr("disabled", false);
 });
 
 // Click sur le boutton "Soumettre une réponse" d'un utilisateur
-$("#sendButton").on("click", function (event) {
+$("#sendUserAnswerButton").on("click", function (event) {
+    // On récupère le nom de l'utilisateur
     var user = $(this).data('firstname');
+    // On récupère l'id de l'utilisateur
     var id = $(this).data('id');
-    var message = $("#messageInput").val();
-    connection.invoke("SendUserAnswer", user, id, message).catch(function (err) {
+    // On récupère la réponse de l'utilisateur qu'il faut envoyer
+    var reponse = $("#userAnswerInput").val();
+    // On envoie la réponse au Hub
+    connection.invoke("SendUserAnswer", user, id, reponse).catch(function (err) {
         return console.error(err.toString());
     });
+    // On a traité l'événement... https://developer.mozilla.org/fr/docs/Web/API/Event/preventDefault
     event.preventDefault();
 });
