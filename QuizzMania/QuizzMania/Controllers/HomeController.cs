@@ -13,26 +13,33 @@ namespace QuizzMania.Controllers
     public class HomeController : Controller
     {
         private QuizzManiaContext _quizzManiaContext;
-        
         /// <summary>
         /// Constructeur. Les paramètres seront injecté par l'IOC (injection de dépendance)
         /// </summary>
-        /// <param name="quizzManiaContext"></param>
         public HomeController(QuizzManiaContext quizzManiaContext)
         {
             _quizzManiaContext = quizzManiaContext;
         }
 
+        /// <summary>
+        /// La page index renvoie sur la vue login
+        /// </summary>
         public IActionResult Index()
         {
             return View("Login");
         }
 
+        /// <summary>
+        /// Page à propos
+        /// </summary>
         public IActionResult About()
         {
             return View();
         }
 
+        /// <summary>
+        /// Login de l'utilisateur ou de l'admin
+        /// </summary>
         public IActionResult Login(UserViewModel userModel)
         {
             if (!ModelState.IsValid)
@@ -44,6 +51,9 @@ namespace QuizzMania.Controllers
             return RedirectToAction("UserSurvey", "Home", userModel);
         }
 
+        /// <summary>
+        /// Formulaire de réponse de l'utilisateur
+        /// </summary>
         public IActionResult UserSurvey(UserViewModel userModel)
         {
             var q = from user in _quizzManiaContext.Users
@@ -55,10 +65,8 @@ namespace QuizzMania.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Tableau de l'admin qui voit qui a répondu ou non, et les réponses si il les affiche
         /// </summary>
-        /// <param name="userModel"></param>
-        /// <returns></returns>
         public IActionResult AnswersWhiteboard(UserViewModel userModel)
         {
             var q = from user in _quizzManiaContext.Users
@@ -69,6 +77,7 @@ namespace QuizzMania.Controllers
             return View(players);
         }
 
+        // TODO Karim, est ce utile ????
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
