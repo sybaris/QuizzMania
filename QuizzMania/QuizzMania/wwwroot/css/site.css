@@ -1,7 +1,35 @@
-﻿.fa-times  {
+﻿/*Pour les icones du tableau des réponses*/
+.fa-times  {
     color : red !important;
 }
 
 .fa-check {
     color: green !important;
+}
+
+/*Pour pallier au CSS definitions material design qui pose probleme*/
+.navbar-header {
+    flex-direction: row;
+}
+
+.navbar-nav {
+    display: flex;
+    flex-direction: row;
+}
+    
+.navbar > .container, .navbar > .container-fluid {
+    display: block;
+}
+
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+}
+
+.btn {
+    font-size: 12px;
+}
+
+footer {
+    display: block;
 }
