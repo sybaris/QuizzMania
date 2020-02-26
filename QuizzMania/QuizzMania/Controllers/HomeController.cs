@@ -7,18 +7,19 @@ using Microsoft.AspNetCore.Mvc;
 using QuizzMania.Model;
 using QuizzMania.Models;
 using QuizzMania.Services.Context;
+using QuizzMania.Services;
 
 namespace QuizzMania.Controllers
 {
     public class HomeController : Controller
     {
-        private QuizzManiaContext _quizzManiaContext;
+        private IRepository _repository;
         /// <summary>
         /// Constructeur. Les paramètres seront injecté par l'IOC (injection de dépendance)
         /// </summary>
-        public HomeController(QuizzManiaContext quizzManiaContext)
+        public HomeController(IRepository repository)
         {
-            _quizzManiaContext = quizzManiaContext;
+            _repository = repository;
         }
 
         /// <summary>
@@ -56,12 +57,9 @@ namespace QuizzMania.Controllers
         /// </summary>
         public IActionResult UserSurvey(UserViewModel userModel)
         {
-            var q = from user in _quizzManiaContext.Users
-                    where user.FirstName.ToLower() == userModel.FirstName.ToLower()
-                    select new UsersViewModel() { FirstName = user.FirstName, Id = user.Id };
-            if (q.Count() != 1)
-                throw new Exception($"L'utilisateur {userModel.FirstName} n'a pas été trouvé");
-            return View(q.Single());
+            var user = _repository.GetUser(userModel.FirstName);
+            var userVm = new UsersViewModel() { FirstName = user.FirstName, Id = user.Id };
+            return View(userVm);
         }
 
         /// <summary>
@@ -69,11 +67,7 @@ namespace QuizzMania.Controllers
         /// </summary>
         public IActionResult AnswersWhiteboard(UserViewModel userModel)
         {
-            var q = from user in _quizzManiaContext.Users
-                    where !user.IsAdmin
-                    orderby user.FirstName
-                    select new UsersViewModel() { FirstName = user.FirstName, Id = user.Id };
-            var players = q.ToList();
+            var players = _repository.GetPlayers().Select(user => new UsersViewModel() { FirstName = user.FirstName, Id = user.Id });
             return View(players);
         }
 

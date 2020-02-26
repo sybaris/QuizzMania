@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using QuizzMania.Hubs;
+using QuizzMania.Services;
 using QuizzMania.Services.Context;
 
 namespace QuizzMania
@@ -33,6 +34,7 @@ namespace QuizzMania
                 options.UseSqlServer(Configuration.GetConnectionString("UserDatabase"))
             );
             //services.AddSingleton<QuizzManiaContext>();
+            services.AddScoped<IRepository,DBRepository>();
             services.AddSignalR();
         }
 
