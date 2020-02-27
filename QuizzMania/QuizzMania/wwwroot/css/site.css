@@ -7,6 +7,15 @@
     color: green !important;
 }
 
+/* Pour la fenetre de Login*/
+.form-check {
+    padding-left: 12px;
+}
+
+.card-login .form {
+    min-height: 240px;
+}
+
 /*Pour pallier au CSS definitions material design qui pose probleme*/
 .navbar-header {
     flex-direction: row;
