@@ -17,7 +17,11 @@
 }
 
 /*Pour pallier au CSS definitions material design qui pose probleme*/
-.navbar-header {
+.navbar .navbar-nav .nav-item .nav-link {
+    text-transform:none
+}
+    /*Pour pallier au CSS definitions material design qui pose probleme*/
+/*.navbar-header {
     flex-direction: row;
 }
 
@@ -29,7 +33,7 @@
 .navbar > .container, .navbar > .container-fluid {
     display: block;
 }
-
+        */
 body {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 14px;
