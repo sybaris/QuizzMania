@@ -9,5 +9,5 @@ $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
 })
 
-// varaible globale utilisé pour SignalR
+// variable globale utilisé pour SignalR
 var connection = new signalR.HubConnectionBuilder().withUrl("/QuizzHub").build();
