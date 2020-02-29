@@ -30,11 +30,14 @@ namespace QuizzMania
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<QuizzManiaContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("UserDatabase"))
-            );
+
+            string connectionStringLabel = "UserDatabase";
+            //if (!env.IsDevelopment())
+            //    connectionStringLabel = "AzureProd";
+
+            services.AddDbContext<QuizzManiaContext>(options => options.UseSqlServer(Configuration.GetConnectionString(connectionStringLabel)));
             //services.AddSingleton<QuizzManiaContext>();
-            services.AddScoped<IRepository,DBRepository>();
+            services.AddScoped<IRepository, DBRepository>();
             services.AddSignalR();
         }
 
@@ -44,6 +47,7 @@ namespace QuizzMania
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
             }
             else
             {
@@ -54,7 +58,7 @@ namespace QuizzMania
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            
+
             app.UseRouting();
             //app.UseAuthorization();
 

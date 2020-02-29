@@ -3,25 +3,6 @@
     Layout = null;
     ViewData["Title"] = "Home Page";
 }
-@*
-    <div class="wrapper fadeInDown">
-        <div id="formContent">
-            <!-- Icon -->
-            <div class="fadeIn first">
-                <img src="~/images/UserLogin.png" id="icon" alt="User Icon" />
-            </div>
-            <h1>Bienvenue sur QuizzMania</h1>
-            <h2>Merci de vous identifier</h2>
-            <!-- Login Form -->
-            <form asp-controller="Home" asp-action="Login">
-                @Html.EditorForModel()
-                <input type="submit" value="Se connecter" />
-            </form>
-        </div>
-    </div>
-*@
-
-
 <!--
  =========================================================
  * Material Kit - v2.0.6
@@ -44,10 +25,10 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
-    <link href="~/login/css/material-kit.css?v=2.0.6" rel="stylesheet" />
+    <link href="~/css/material-kit.css?v=2.0.6" rel="stylesheet" />
 </head>
 
-<body class="login-page sidebar-collapse" style="background-image: url('/login/img/question-background.png'); background-size: cover; background-position: top center;">
+<body class="login-page sidebar-collapse" style="background-image: url('/images/question-background.png'); background-size: cover; background-position: top center;">
     <div class="page-header header-filter">
         <div class="container">
             <div class="row">
@@ -64,13 +45,13 @@
                                             <i class="material-icons">face</i>
                                         </span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="Prénom..." id="FirstName" name="FirstName"/>
+                                    <input type="text" class="form-control" placeholder="Prénom..." id="FirstName" name="FirstName" />
                                 </div>
                             </div>
 
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" value="true" id="IsAdmin" name="IsAdmin"/>Admin
+                                    <input class="form-check-input" type="checkbox" value="true" id="IsAdmin" name="IsAdmin" />Admin
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
@@ -78,23 +59,13 @@
                             </div>
 
                             <div class="footer text-center">
-                                <input type="submit" class="btn btn-primary btn-link btn-wd btn-lg" value="Se connecter"/>
-                                @*<a href="#pablo" class="btn btn-primary btn-link btn-wd btn-lg">Se connecter</a>*@
+                                <input type="submit" class="btn btn-primary btn-link btn-wd btn-lg" value="Se connecter" />
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
-    <!--   Core JS Files   -->
-    <script src="~/login/js/core/jquery.min.js" type="text/javascript"></script>
-    <script src="~/login/js/core/popper.min.js" type="text/javascript"></script>
-    <script src="~/login/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
-    <script src="~/login/js/plugins/moment.min.js"></script>
-    <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
-    <script src="~/login/js/material-kit.js?v=2.0.6" type="text/javascript"></script>
 </body>
-
 </html>
