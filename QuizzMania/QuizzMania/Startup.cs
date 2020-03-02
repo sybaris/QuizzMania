@@ -30,13 +30,7 @@ namespace QuizzMania
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
-            string connectionStringLabel = "UserDatabase";
-            //if (!env.IsDevelopment())
-            //    connectionStringLabel = "AzureProd";
-
-            services.AddDbContext<QuizzManiaContext>(options => options.UseSqlServer(Configuration.GetConnectionString(connectionStringLabel)));
-            //services.AddSingleton<QuizzManiaContext>();
+            services.AddDbContext<QuizzManiaContext>(options => options.UseSqlServer(Configuration.GetConnectionString("UserDatabase")));
             services.AddScoped<IRepository, DBRepository>();
             services.AddSignalR();
         }

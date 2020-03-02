@@ -1,5 +1,4 @@
 ﻿using QuizzMania.Model;
-using QuizzMania.Services.Context;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,34 +6,25 @@ using System.Linq;
 
 namespace QuizzMania.Services
 {
-    public class DBRepository : IRepository
+    public class MemoryRepository : IRepository
     {
-        private QuizzManiaContext _quizzManiaContext;
-
-        public DBRepository(QuizzManiaContext quizzManiaContext)
-        {
-            _quizzManiaContext = quizzManiaContext;
-        }
+        private readonly List<User> _users = new List<User>();
 
         public void AddUser(string firstname)
         {
-            _quizzManiaContext.Users.Add(new User() { FirstName = firstname });
-            _quizzManiaContext.SaveChanges();
+            _users.Add(new User() { FirstName = firstname});
         }
 
         public void ClearUsers()
         {
-            // Attention aux performances si beaucoup de users : https://stackoverflow.com/questions/15220411/entity-framework-delete-all-rows-in-table
-            _quizzManiaContext.Users.RemoveRange(_quizzManiaContext.Users);
-            _quizzManiaContext.SaveChanges();
+            _users.Clear();
         }
 
         public IEnumerable<UserDto> GetPlayers()
         {
-            var q = from user in _quizzManiaContext.Users
+            var q = from user in _users
                     where !user.IsAdmin
                     orderby user.FirstName
-                    //select user;
                     select new UserDto()
                     {
                         Id = user.Id,
@@ -49,7 +39,7 @@ namespace QuizzMania.Services
 
         public UserDto GetUser(string firstname)
         {
-            var q = from u in _quizzManiaContext.Users
+            var q = from u in _users
                     where u.FirstName.ToLower() == firstname.ToLower()
                     select u;
             //select new UsersViewModel() { FirstName = user.FirstName, Id = user.Id };
@@ -58,16 +48,16 @@ namespace QuizzMania.Services
                 throw new Exception($"L'utilisateur {firstname} n'a pas été trouvé");
             if (userCount > 1)
                 throw new Exception($"L'utilisateur {firstname} n'est pas unique");
-            
+
             User user = q.Single();
             // TODO JPP : Use Automapper
-            UserDto userDto = new UserDto() 
-            { 
-                Id = user.Id, 
-                FirstName = user.FirstName, 
-                Email = user.Email, 
-                IsAdmin = user.IsAdmin, 
-                LastName = user.LastName 
+            UserDto userDto = new UserDto()
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                Email = user.Email,
+                IsAdmin = user.IsAdmin,
+                LastName = user.LastName
             };
             return userDto;
         }

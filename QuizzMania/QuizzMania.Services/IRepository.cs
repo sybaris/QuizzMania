@@ -7,7 +7,9 @@ namespace QuizzMania.Services
 {
     public interface IRepository
     {
-        User GetUser(string firstname);
-        IEnumerable<User> GetPlayers();
+        UserDto GetUser(string firstname);
+        IEnumerable<UserDto> GetPlayers();
+        void AddUser(string firstname);
+        void ClearUsers();
     }
 }
