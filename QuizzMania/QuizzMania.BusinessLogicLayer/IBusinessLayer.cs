@@ -1,11 +1,10 @@
-﻿using QuizzMania.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace QuizzMania.Services
+namespace QuizzMania.BusinessLogicLayer
 {
-    public interface IRepository
+    public interface IBusinessLayer
     {
         UserDto GetUser(string firstname);
         IEnumerable<UserDto> GetPlayers();

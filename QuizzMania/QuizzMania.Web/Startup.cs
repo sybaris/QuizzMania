@@ -11,11 +11,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using QuizzMania.Hubs;
-using QuizzMania.Services;
-using QuizzMania.Services.Context;
+using QuizzMania.Web.Hubs;
+using QuizzMania.DataAccessLayer;
+using QuizzMania.DataAccessLayer.Context;
+using QuizzMania.BusinessLogicLayer;
 
-namespace QuizzMania
+namespace QuizzMania.Web
 {
     public class Startup
     {
@@ -32,6 +33,7 @@ namespace QuizzMania
             services.AddControllersWithViews();
             services.AddDbContext<QuizzManiaContext>(options => options.UseSqlServer(Configuration.GetConnectionString("UserDatabase")));
             services.AddScoped<IRepository, DBRepository>();
+            services.AddScoped<IBusinessLayer, BusinessLayer>();
             services.AddSignalR();
         }
 

@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\QuizzMania.Services\QuizzMania.Services.csproj" />
+    <ProjectReference Include="..\QuizzMania.BusinessLogicLayer\QuizzMania.BusinessLogicLayer.csproj" />
   </ItemGroup>
 
 </Project>

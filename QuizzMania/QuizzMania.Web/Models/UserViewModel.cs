@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace QuizzMania.Models
+namespace QuizzMania.Web.Models
 {
     public class UserViewModel
     { 

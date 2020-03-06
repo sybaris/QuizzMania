@@ -4,22 +4,20 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using QuizzMania.Model;
-using QuizzMania.Models;
-using QuizzMania.Services.Context;
-using QuizzMania.Services;
+using QuizzMania.BusinessLogicLayer;
+using QuizzMania.Web.Models;
 
-namespace QuizzMania.Controllers
+namespace QuizzMania.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private IRepository _repository;
+        private IBusinessLayer _businessLayer;
         /// <summary>
         /// Constructeur. Les paramètres seront injecté par l'IOC (injection de dépendance)
         /// </summary>
-        public HomeController(IRepository repository)
+        public HomeController(IBusinessLayer businessLayer)
         {
-            _repository = repository;
+            _businessLayer = businessLayer;
         }
 
         /// <summary>
@@ -57,7 +55,7 @@ namespace QuizzMania.Controllers
         /// </summary>
         public IActionResult UserSurvey(UserViewModel userModel)
         {
-            var user = _repository.GetUser(userModel.FirstName);
+            var user = _businessLayer.GetUser(userModel.FirstName);
             var userVm = new UsersViewModel() { FirstName = user.FirstName, Id = user.Id };
             return View(userVm);
         }
@@ -67,7 +65,7 @@ namespace QuizzMania.Controllers
         /// </summary>
         public IActionResult AnswersWhiteboard(UserViewModel userModel)
         {
-            var players = _repository.GetPlayers().Select(user => new UsersViewModel() { FirstName = user.FirstName, Id = user.Id });
+            var players = _businessLayer.GetPlayers().Select(user => new UsersViewModel() { FirstName = user.FirstName, Id = user.Id });
             return View(players);
         }
 

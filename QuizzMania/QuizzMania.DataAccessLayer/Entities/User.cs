@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace QuizzMania.Model
+namespace QuizzMania.DataAccessLayer.Entities
 {
     /// <summary>
     /// User

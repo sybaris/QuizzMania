@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using QuizzMania.Services.Context;
+using QuizzMania.DataAccessLayer.Context;
 
-namespace QuizzMania.Services.Migrations
+namespace QuizzMania.DataAccessLayer.Migrations
 {
     [DbContext(typeof(QuizzManiaContext))]
-    partial class QuizzManiaContextModelSnapshot : ModelSnapshot
+    [Migration("20200206111654_CreateDatabase")]
+    partial class CreateDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -18,7 +20,7 @@ namespace QuizzMania.Services.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("QuizzMania.Services.Context.User", b =>
+            modelBuilder.Entity("QuizzMania.DataAccessLayer.Context.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

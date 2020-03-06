@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace QuizzMania.Models
+namespace QuizzMania.Web.Models
 {
     public class UsersViewModel
     {

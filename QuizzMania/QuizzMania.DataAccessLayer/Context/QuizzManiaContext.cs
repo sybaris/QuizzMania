@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using QuizzMania.Model;
+using QuizzMania.DataAccessLayer.Entities;
 
-namespace QuizzMania.Services.Context
+namespace QuizzMania.DataAccessLayer.Context
 {
     /// <summary>
     /// Dbcontext

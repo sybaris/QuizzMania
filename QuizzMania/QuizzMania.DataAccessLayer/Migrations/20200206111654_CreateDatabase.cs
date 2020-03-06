@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace QuizzMania.Services.Migrations
+namespace QuizzMania.DataAccessLayer.Migrations
 {
     public partial class CreateDatabase : Migration
     {

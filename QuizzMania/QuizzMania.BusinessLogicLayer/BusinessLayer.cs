@@ -1,30 +1,36 @@
-﻿using QuizzMania.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
+using System.Text;
+using QuizzMania.DataAccessLayer;
 
-namespace QuizzMania.Services
+namespace QuizzMania.BusinessLogicLayer
 {
-    public class MemoryRepository : IRepository
+    public class BusinessLayer : IBusinessLayer
     {
-        private readonly List<User> _users = new List<User>();
+        private IRepository _repository;
+        public BusinessLayer(IRepository repository)
+        {
+            _repository = repository;
+        }
 
         public void AddUser(string firstname)
         {
-            _users.Add(new User() { FirstName = firstname});
+            _repository.AddUser(new DataAccessLayer.Entities.User() { FirstName = firstname });
         }
 
         public void ClearUsers()
         {
-            _users.Clear();
+            _repository.ClearUsers();
         }
 
         public IEnumerable<UserDto> GetPlayers()
         {
-            var q = from user in _users
+            var users = _repository.GetUsers();
+            var q = from user in users
                     where !user.IsAdmin
                     orderby user.FirstName
+                    //select user;
                     select new UserDto()
                     {
                         Id = user.Id,
@@ -39,17 +45,8 @@ namespace QuizzMania.Services
 
         public UserDto GetUser(string firstname)
         {
-            var q = from u in _users
-                    where u.FirstName.ToLower() == firstname.ToLower()
-                    select u;
-            //select new UsersViewModel() { FirstName = user.FirstName, Id = user.Id };
-            var userCount = q.Count();
-            if (userCount < 1)
-                throw new Exception($"L'utilisateur {firstname} n'a pas été trouvé");
-            if (userCount > 1)
-                throw new Exception($"L'utilisateur {firstname} n'est pas unique");
+            var user = _repository.GetUser(firstname);
 
-            User user = q.Single();
             // TODO JPP : Use Automapper
             UserDto userDto = new UserDto()
             {
