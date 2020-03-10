@@ -24,6 +24,11 @@ namespace QuizzMania.BusinessLogicLayer
             _repository.ClearUsers();
         }
 
+        public bool ExistUser(string firstname)
+        {
+            return _repository.ExistUser(firstname);
+        }
+
         public IEnumerable<UserDto> GetPlayers()
         {
             var users = _repository.GetUsers();
