@@ -9,7 +9,7 @@ namespace QuizzMania.DataAccessLayer
 {
     public class DBRepository : IRepository
     {
-        private QuizzManiaContext _quizzManiaContext;
+        private readonly QuizzManiaContext _quizzManiaContext;
 
         public DBRepository(QuizzManiaContext quizzManiaContext)
         {

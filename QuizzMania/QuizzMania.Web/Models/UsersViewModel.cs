@@ -7,7 +7,7 @@ namespace QuizzMania.Web.Models
 {
     public class UsersViewModel
     {
-        public string FirstName { get; set; }
+        public string FirstName { get; set; } = "";
         public int Id { get; set; }
     }
 }

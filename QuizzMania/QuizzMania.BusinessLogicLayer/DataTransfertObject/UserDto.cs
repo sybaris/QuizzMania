@@ -16,17 +16,17 @@ namespace QuizzMania.BusinessLogicLayer
         /// First name
         /// </summary>
         [Required]
-        public string FirstName { get; set; }
+        public string FirstName { get; set; } = "";
 
         /// <summary>
         /// Last name
         /// </summary>
-        public string LastName { get; set; }
+        public string? LastName { get; set; } = "";
 
         /// <summary>
         /// Email
         /// </summary>
-        public string Email { get; set; }
+        public string? Email { get; set; } = "";
 
         /// <summary>
         /// Is admin

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using QuizzMania.DataAccessLayer.Entities;
 
@@ -21,7 +22,7 @@ namespace QuizzMania.DataAccessLayer.Context
         /// <summary>
         /// "Table" users
         /// </summary>
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<User> Users { get; set; } = null!;
 
         /// <summary>
         /// Connection string
