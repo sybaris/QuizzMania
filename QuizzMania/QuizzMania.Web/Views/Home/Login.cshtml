@@ -1,7 +1,8 @@
 ﻿@model UserViewModel
 @{
     Layout = null;
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Login Page";
+    var errorDisplay = (bool)(ViewData["ErrorDisplay"] ?? false);
 }
 <!--
  =========================================================
@@ -38,6 +39,20 @@
                             <div class="card-header card-header-primary text-center">
                                 <h4 class="card-title">Authentification</h4>
                             </div>
+                            @if (errorDisplay)
+                            { 
+                                <div id="alert_message" class="alert alert-danger" style="display:block;">
+                                    <div class="container">
+                                        <div class="alert-icon">
+                                            <i class="material-icons">error_outline</i>
+                                        </div>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true"><i class="material-icons">clear</i></span>
+                                        </button>
+                                        Utilisateur inconnu
+                                    </div>
+                                </div>
+                            }
                             <div class="card-body">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -57,8 +72,7 @@
                                     </span>
                                 </label>
                             </div>
-
-                            <div class="footer text-center">
+                            <div class="text-center">
                                 <input type="submit" class="btn btn-primary btn-link btn-wd btn-lg" value="Se connecter" />
                             </div>
                         </form>
@@ -67,5 +81,29 @@
             </div>
         </div>
     </div>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    </environment>
+
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
+        </script>
+    </environment>
+
+    <script>
+        $("#FirstName").focus(function () { $("#alert_message").slideUp(); });
+    </script>
 </body>
 </html>

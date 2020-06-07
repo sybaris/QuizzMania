@@ -10,5 +10,6 @@ namespace QuizzMania.BusinessLogicLayer
         IEnumerable<UserDto> GetPlayers();
         void AddUser(string firstname);
         void ClearUsers();
+        bool ExistUser(string firstname);
     }
 }

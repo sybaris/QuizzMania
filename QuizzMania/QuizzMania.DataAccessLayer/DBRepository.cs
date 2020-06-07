@@ -29,6 +29,14 @@ namespace QuizzMania.DataAccessLayer
             _quizzManiaContext.SaveChanges();
         }
 
+        public bool ExistUser(string firstname)
+        {
+            var q = from u in _quizzManiaContext.Users
+                    where u.FirstName.ToLower() == firstname.ToLower()
+                    select u;
+            return q.Count() == 1;
+        }
+
         public User GetUser(string firstname)
         {
             var q = from u in _quizzManiaContext.Users

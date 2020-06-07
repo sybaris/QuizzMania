@@ -11,5 +11,6 @@ namespace QuizzMania.DataAccessLayer
         IEnumerable<User> GetUsers();
         void AddUser(User user);
         void ClearUsers();
+        bool ExistUser(string firstname);
     }
 }

@@ -20,6 +20,14 @@ namespace QuizzMania.DataAccessLayer
             _users.Clear();
         }
 
+        public bool ExistUser(string firstname)
+        {
+            var q = from u in _users
+                    where u.FirstName.ToLower() == firstname.ToLower()
+                    select u;
+            return q.Count() == 1;
+        }
+
         public User GetUser(string firstname)
         {
             var q = from u in _users

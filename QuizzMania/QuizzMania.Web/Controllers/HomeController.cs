@@ -41,8 +41,17 @@ namespace QuizzMania.Web.Controllers
         /// </summary>
         public IActionResult Login(UserViewModel userModel)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || !_businessLayer.ExistUser(userModel.FirstName))
+            {
+                ViewData["ErrorDisplay"] = true;
                 return View("Login");
+            }
+            var user = _businessLayer.GetUser(userModel.FirstName);
+            if (user.IsAdmin != userModel.IsAdmin)
+            {
+                ViewData["ErrorDisplay"] = true;
+                return View("Login");
+            }
 
             if (userModel.IsAdmin)
                 return RedirectToAction("AnswersWhiteboard", "Home", userModel);
