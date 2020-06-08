@@ -33,6 +33,9 @@ $("#btn_next").on("click", function (event) {
     // On remet tous les status des réponses à non répondu
     $(".list-icon").removeClass("fa-check");
     $(".list-icon").addClass("fa-times");
+    // On vide toutes les réponses
+    $(".reponse").each(
+        function (index, element) { element.textContent = ''; });
     // On envoie à tous les utilisateurs le message SendAdminNextQuestion pour indiquer que l'on va changer de question
     // Chaque utilisateur va pouvoir à nouveau poster des réponses...
     connection.invoke("SendAdminNextQuestion").catch(function (err) {
