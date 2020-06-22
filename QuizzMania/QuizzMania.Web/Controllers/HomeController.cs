@@ -78,7 +78,9 @@ namespace QuizzMania.Web.Controllers
             return View(players);
         }
 
-        // TODO Karim, est ce utile ????
+        /// <summary>
+        /// En cas d'erreur...
+        /// </summary>
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
