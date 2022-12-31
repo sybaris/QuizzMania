@@ -21,13 +21,13 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Get current directory
-      run: echo ${{ github.workspace }}
+      run: echo ${{ github.workspace }}/QuizzMania
     - name: Restore dependencies
       run: dotnet restore  
-      working-directory: ${{ github.workspace }}
+      working-directory: ${{ github.workspace }}/QuizzMania
     - name: Build
       run: dotnet build --no-restore
-      working-directory: ${{ github.workspace }}
+      working-directory: ${{ github.workspace }}/QuizzMania
     - name: Test
       run: dotnet test --no-build --verbosity normal
-      working-directory: ${{ github.workspace }}
+      working-directory: ${{ github.workspace }}/QuizzMania
