@@ -24,10 +24,10 @@ jobs:
       run: echo ${GITHUB_WORKSPACE}
     - name: Restore dependencies
       run: dotnet restore  
-      working-directory: ${GITHUB_WORKSPACE}/QuizzMania
+      working-directory: ${GITHUB_WORKSPACE}
     - name: Build
       run: dotnet build --no-restore
-      working-directory: ${GITHUB_WORKSPACE}/QuizzMania
+      working-directory: ${GITHUB_WORKSPACE}
     - name: Test
       run: dotnet test --no-build --verbosity normal
-      working-directory: ${GITHUB_WORKSPACE}/QuizzMania
+      working-directory: ${GITHUB_WORKSPACE}
