@@ -21,7 +21,7 @@ jobs:
       with:
         dotnet-version: 3.1.x
     - name: Restore dependencies
-      run: dotnet restore QuizzMania/QuizzMania.sln
+      run: dotnet restore /home/runner/work/QuizzMania/QuizzMania/QuizzMania.sln
       working-directory: QuizzMania/
     - name: Build
       run: dotnet build --no-restore
