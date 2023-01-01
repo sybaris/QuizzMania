@@ -7,7 +7,7 @@ env:
   AZURE_WEBAPP_NAME: QuizzManiaWeb
   AZURE_WEBAPP_PACKAGE_PATH: QuizzMania.Web\published
   CONFIGURATION: Release
-  DOTNET_CORE_VERSION: 5.0.x
+  DOTNET_CORE_VERSION: 6.0.x
   WORKING_DIRECTORY: QuizzMania.Web
 jobs:
   build:
@@ -19,6 +19,10 @@ jobs:
       with:
         include-prerelease: True
         dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
+    - name: Display info
+      run: |
+        echo ${{ env.WORKING_DIRECTORY }}
+        echo ${{ github.workspace }}
     - name: Restore
       run: dotnet restore "${{ env.WORKING_DIRECTORY }}"
     - name: Build
