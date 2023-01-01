@@ -32,7 +32,7 @@ namespace QuizzMania.DataAccessLayer.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"server=(localdb)\MSSQLLocalDB;Trusted_Connection=True;Initial Catalog=QuizzMania;");
+                optionsBuilder.UseSqlServer(@"Data Source=tcp:sybaris.database.windows.net,1433;Initial Catalog=QuizzManiaDB;User Id=adminsql@sybaris;Password=v7zejcagBso0OdIrcPRr");
             }
         }
 
