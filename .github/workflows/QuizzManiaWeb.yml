@@ -1,4 +1,4 @@
-name: Build and deploy .NET Core application to Web App QuizzManiaWeb
+name: Build and deploy QuizzManiaWeb Web App 
 on:
   push:
     branches:
