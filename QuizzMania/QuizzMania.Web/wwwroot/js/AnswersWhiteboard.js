@@ -48,7 +48,7 @@ $("#btn_next").on("click", function (event) {
 // On recoit de SignalR l'info qu'un utilisateur a envoyé sa réponse
 connection.on("ReceiveUserAnswer", function (user, id, reponse) {
     // On enlève quelques caractères qui peuvent poser problème en Html
-    var reponseStr = reponse.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    let reponseStr = reponse.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     // On met le texte de la réponse
     document.getElementById(id).textContent = reponseStr;
     // On retire l'icone croix rouge pour mettre la coche verte

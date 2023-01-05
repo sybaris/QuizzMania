@@ -30,11 +30,11 @@ connection.on("ReceiveAdminNextQuestion", function () {
 // Click sur le boutton "Soumettre une réponse" d'un utilisateur
 $("#sendUserAnswerButton").on("click", function (event) {
     // On récupère le nom de l'utilisateur
-    var user = $(this).data('firstname');
+    let user = $(this).data('firstname');
     // On récupère l'id de l'utilisateur
-    var id = $(this).data('id');
+    let id = $(this).data('id');
     // On récupère la réponse de l'utilisateur qu'il faut envoyer
-    var reponse = $("#userAnswerInput").val();
+    let reponse = $("#userAnswerInput").val();
     // On envoie la réponse au Hub
     connection.invoke("SendUserAnswer", user, id, reponse).catch(function (err) {
         return console.error(err.toString());
