@@ -1,4 +1,4 @@
-![Build Status](https://github.com/github/docs/actions/workflows/QuizzManiaWeb.yml/badge.svg)
+![Build Status](https://github.com/sybaris/QuizzMania/actions/workflows/QuizzManiaWeb.yml/badge.svg)
 # Projet QuizzMania
 L'objectif de ce projet est de fournir une application "basique" qui permet de répondre à des questions (quizz), et d'afficher les réponses de tous les participants au tableau...
 
