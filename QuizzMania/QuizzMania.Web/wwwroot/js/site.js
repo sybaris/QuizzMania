@@ -10,4 +10,4 @@ $(document).ready(function () {
 })
 
 // variable globale utilisé pour SignalR
-var connection = new signalR.HubConnectionBuilder().withUrl("/QuizzHub").build();
+let connection = new signalR.HubConnectionBuilder().withUrl("/QuizzHub").build();
