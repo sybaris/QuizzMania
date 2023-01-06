@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace QuizzMania.DataAccessLayer
 {
+    [Serializable]
     public class DBRepositoryException : Exception
     {
         public DBRepositoryException()
