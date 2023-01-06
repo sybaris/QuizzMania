@@ -8,7 +8,7 @@ namespace QuizzMania.BusinessLogicLayer
 {
     public class BusinessLayer : IBusinessLayer
     {
-        private IRepository _repository;
+        private readonly IRepository _repository;
         public BusinessLayer(IRepository repository)
         {
             _repository = repository;

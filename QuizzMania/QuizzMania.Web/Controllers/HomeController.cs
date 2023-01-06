@@ -11,7 +11,7 @@ namespace QuizzMania.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private IBusinessLayer _businessLayer;
+        private readonly IBusinessLayer _businessLayer;
         /// <summary>
         /// Constructeur. Les paramètres seront injecté par l'IOC (injection de dépendance)
         /// </summary>

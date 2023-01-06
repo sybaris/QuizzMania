@@ -45,9 +45,9 @@ namespace QuizzMania.DataAccessLayer
             //select new UsersViewModel() { FirstName = user.FirstName, Id = user.Id };
             var userCount = q.Count();
             if (userCount < 1)
-                throw new Exception($"L'utilisateur {firstname} n'a pas été trouvé");
+                throw new DBRepositoryException($"L'utilisateur {firstname} n'a pas été trouvé");
             if (userCount > 1)
-                throw new Exception($"L'utilisateur {firstname} n'est pas unique");
+                throw new DBRepositoryException($"L'utilisateur {firstname} n'est pas unique");
             
             User user = q.Single();
             return user;
