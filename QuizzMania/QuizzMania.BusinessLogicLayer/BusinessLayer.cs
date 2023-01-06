@@ -35,7 +35,6 @@ namespace QuizzMania.BusinessLogicLayer
             var q = from user in users
                     where !user.IsAdmin
                     orderby user.FirstName
-                    //select user;
                     select new UserDto()
                     {
                         Id = user.Id,
