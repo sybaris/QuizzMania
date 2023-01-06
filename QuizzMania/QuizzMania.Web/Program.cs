@@ -39,22 +39,9 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-//app.UseAuthorization();
-
 app.MapHub<QuizzHub>("/QuizzHub");
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
-
-
-/*
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapHub<QuizzHub>("/QuizzHub");
-    endpoints.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}");
-});*/
-//quizzManiaContext.InitDefaultValue();

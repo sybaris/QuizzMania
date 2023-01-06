@@ -42,7 +42,6 @@ namespace QuizzMania.DataAccessLayer
             var q = from u in _quizzManiaContext.Users
                     where u.FirstName.ToLower() == firstname.ToLower()
                     select u;
-            //select new UsersViewModel() { FirstName = user.FirstName, Id = user.Id };
             var userCount = q.Count();
             if (userCount < 1)
                 throw new DBRepositoryException($"L'utilisateur {firstname} n'a pas été trouvé");
