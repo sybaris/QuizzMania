@@ -53,9 +53,9 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       shell: powershell
       run: |
-        rem .\.sonar\scanner\dotnet-sonarscanner begin /k:"sybaris_QuizzMania" /o:"sybaris" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+        # .\.sonar\scanner\dotnet-sonarscanner begin /k:"sybaris_QuizzMania" /o:"sybaris" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
         dotnet build "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-restore
-        rem .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"      
+        # .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"      
     - name: Test
       run: dotnet test "${{ env.WORKING_DIRECTORY }}" --no-build
     - name: Publish
