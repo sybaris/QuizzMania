@@ -5,8 +5,8 @@ on:
     - master
   workflow_dispatch:
 env:
-  AZURE_WEBAPP_NAME: QuizzManiaWeb
-  AZURE_WEBAPP_PACKAGE_PATH: QuizzMania.Web/published
+  AZURE_WEBAPP_NAME: quizzmaniaweb-linux
+  AZURE_WEBAPP_PACKAGE_PATH: quizzmaniaweb-linux/published
   CONFIGURATION: Release
   WORKING_DIRECTORY: ${{ github.workspace }}/QuizzMania
 jobs:
@@ -34,7 +34,7 @@ jobs:
     - name: Test
       run: dotnet test "${{ env.WORKING_DIRECTORY }}" --no-build
     - name: Publish
-      run: dotnet publish "${{ env.WORKING_DIRECTORY }}/QuizzMania.Web" --configuration ${{ env.CONFIGURATION }} --no-build --output "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}"
+      run: dotnet publish "${{ env.WORKING_DIRECTORY }}/quizzmaniaweb-linux" --configuration ${{ env.CONFIGURATION }} --no-build --output "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}"
     - name: Publish Artifacts
       uses: actions/upload-artifact@v4.0.0
       with:
@@ -42,6 +42,9 @@ jobs:
         path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     needs: build
     steps:
     - name: Download artifact from build job
@@ -49,9 +52,15 @@ jobs:
       with:
         name: webapp
         path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+    - name: Login to Azure
+      uses: azure/login@v2
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
     - name: Deploy to Azure WebApp
-      uses: azure/webapps-deploy@v2
+      uses: azure/webapps-deploy@v3
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.QuizzManiaWeb_8D60 }}
+        slot-name: 'Production'
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
