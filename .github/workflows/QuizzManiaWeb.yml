@@ -6,9 +6,9 @@ on:
   workflow_dispatch:
 env:
   AZURE_WEBAPP_NAME: QuizzManiaWeb
-  AZURE_WEBAPP_PACKAGE_PATH: QuizzMania.Web\published
+  AZURE_WEBAPP_PACKAGE_PATH: QuizzMania.Web/published
   CONFIGURATION: Release
-  WORKING_DIRECTORY: ${{ github.workspace }}\QuizzMania
+  WORKING_DIRECTORY: ${{ github.workspace }}/QuizzMania
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,13 +28,13 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      shell: powershell
+      shell: pwsh
       run: |
         dotnet build "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-restore
     - name: Test
       run: dotnet test "${{ env.WORKING_DIRECTORY }}" --no-build
     - name: Publish
-      run: dotnet publish "${{ env.WORKING_DIRECTORY }}\QuizzMania.Web" --configuration ${{ env.CONFIGURATION }} --no-build --output "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}"
+      run: dotnet publish "${{ env.WORKING_DIRECTORY }}/QuizzMania.Web" --configuration ${{ env.CONFIGURATION }} --no-build --output "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}"
     - name: Publish Artifacts
       uses: actions/upload-artifact@v4.0.0
       with:
