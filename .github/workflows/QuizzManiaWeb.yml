@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 env:
   AZURE_WEBAPP_NAME: quizzmaniaweb-linux
-  AZURE_WEBAPP_PACKAGE_PATH: quizzmaniaweb-linux/published
+  AZURE_WEBAPP_PACKAGE_PATH: QuizzMania.Web/published
   CONFIGURATION: Release
   WORKING_DIRECTORY: ${{ github.workspace }}/QuizzMania
 jobs:
@@ -34,7 +34,7 @@ jobs:
     - name: Test
       run: dotnet test "${{ env.WORKING_DIRECTORY }}" --no-build
     - name: Publish
-      run: dotnet publish "${{ env.WORKING_DIRECTORY }}/quizzmaniaweb-linux" --configuration ${{ env.CONFIGURATION }} --no-build --output "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}"
+      run: dotnet publish "${{ env.WORKING_DIRECTORY }}/QuizzMania.Web" --configuration ${{ env.CONFIGURATION }} --no-build --output "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}"
     - name: Publish Artifacts
       uses: actions/upload-artifact@v4.0.0
       with:
